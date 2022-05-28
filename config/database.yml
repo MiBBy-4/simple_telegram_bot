@@ -23,7 +23,9 @@ default: &default
 
 development:
   <<: *default
-  database: tg_bot_development
+  database: <%= ENV['DEVELOPMENT_DATABASE_NAME'] %>
+  username: <%= ENV['DEVELOPMENT_DATABASE_USERNAME'] %>
+  password: <%= ENV['DEVELOPMENT_DATABASE_PASSWORD'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

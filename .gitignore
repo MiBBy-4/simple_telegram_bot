@@ -29,3 +29,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore database connection data
+database_connection.env
+
+# Ignore API tonek
+api_token.env
