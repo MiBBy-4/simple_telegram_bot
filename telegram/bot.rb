@@ -1,7 +1,7 @@
 require File.expand_path('../config/environment', __dir__)
 require 'telegram/bot'
 
-Telegram::Bot::Client.run('5497432561:AAGNlDX-s8qfomIAKs4jai7pJdKncSeMN0w') do |bot|
+Telegram::Bot::Client.run(ENV['TELEGRAM_BOT_TOKEN']) do |bot|
     bot.listen do |message|
         if !User.exists?(telegram_id: message.chat.id)
             user = User.create(telegram_id: message.from.id, name: message.from.first_name)
