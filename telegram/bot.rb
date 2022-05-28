@@ -31,7 +31,17 @@ Telegram::Bot::Client.run('5497432561:AAGNlDX-s8qfomIAKs4jai7pJdKncSeMN0w') do |
             user.step = nil
             user.save
         when 'search'
-        
+            bots = Bot.where('description LIKE ?', "%#{message.text}%")
+            bot.api.send_message(chat_id: message.chat.id, text:'Search results:')
+            if !bots.size.zero?
+                bots.each do |found_bot|
+                    bot.api.send_message(chat_id: message.chat.id, text: "#{found_bot.username}: #{found_bot.description}")
+                end
+            else
+                bot.api.send_message(chat_id: message.chat.id, text:'Absolutly nothing')
+            end
+            user.step = nil
+            user.save
         end
                 
 
